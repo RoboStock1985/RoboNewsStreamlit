@@ -5,6 +5,7 @@ import streamlit as st
 from backend_functionality import sbase_functions
 from backend_functionality import auth_utils
 
+st.set_page_config(layout="wide")
 st.set_option('client.showErrorDetails', False)
 
 supabase_client = sbase_functions.get_authenticated_client()

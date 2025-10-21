@@ -14,10 +14,14 @@ def require_login(supabase_client):
     else:
         # Optional: check if session is still valid
         user = supabase_client.auth.get_user(st.session_state.session["access_token"])
+
         if not user or not user.user:
             st.session_state.session = None
             st.warning("Session expired. Please log in again.")
             st.switch_page("Login Page.py")
+        else:
+            # Store user ID in session state for easy access
+            st.session_state.user_id = user.user.id
 
 
 def check_login(supabase_client):

@@ -5,6 +5,7 @@ from supabase import create_client
 
 from dotenv import load_dotenv
 
+st.set_page_config(layout="centered")
 st.set_option('client.showErrorDetails', False)
 
 # -------------------------

@@ -2,6 +2,7 @@ import streamlit as st
 from backend_functionality import sbase_functions
 from streamlit_url_fragments import get_fragments
 
+st.set_page_config(layout="centered")
 st.set_option('client.showErrorDetails', False)
 
 supabase_client = sbase_functions.get_authenticated_client()
