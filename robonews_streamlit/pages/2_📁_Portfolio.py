@@ -1,28 +1,28 @@
 import streamlit as st
-from backend_functionality import sbase_functions
-from backend_functionality import auth_utils
+from backend_functionality import sbase_functions, auth_utils
+# from backend_functionality import theme_utils
 
 st.set_page_config(layout="wide")
 st.set_option('client.showErrorDetails', False)
 
 supabase = sbase_functions.get_authenticated_client()
-
-# 👇 Enforce login before anything else
 auth_utils.require_login(supabase)
-
+user_id = st.session_state.user_id
+# theme_utils.check_theme(supabase, user_id)
 
 MAX_SELECTION = 5
 STOCKS_TABLE = "logos"
 USER_SELECTION_TABLE = "user_stock_selection"
 LOGO_MAX_HEIGHT = 150  # max logo height in pixels
 
-
 # ---------------------------
 # Fetch stocks from Supabase
 # ---------------------------
 @st.cache_data
 def get_stocks():
+
     response = supabase.table(STOCKS_TABLE).select("*").execute()
+
     return response.data if response.data else []
 
 

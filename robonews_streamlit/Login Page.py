@@ -1,5 +1,6 @@
 
 import os
+import time
 import streamlit as st
 from supabase import create_client
 
@@ -34,6 +35,13 @@ params = st.query_params
 if st.session_state.session:
 
     st.write("👋 Welcome! You are logged in.")
+
+    # ' re-direct to RoboNews page...'
+    st.write(" Redirecting to RoboNews...")
+
+    time.sleep(2)
+    st.switch_page("pages/3_📰_RoboNews.py")
+
     if st.button("Logout"):
         st.session_state.session = None
         supabase_client.auth.sign_out()
